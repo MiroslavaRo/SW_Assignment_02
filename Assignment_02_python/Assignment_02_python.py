@@ -7,20 +7,27 @@ from selenium.webdriver.chrome.service import Service
 
 ADDRESS = "https://en.wikipedia.org/wiki/Software_metric"
 
+TIMES=10
+
 def remove_open_files(file_path):
     if os.path.exists(file_path):
         os.remove(file_path)
 
-PATH_RESULTS = r"D:\VUM STUDY\2 year\1 semester\Software Metrics - Tools and Methodology\3. Assignment\Assignment_02\Assignment_02\Assignment_02_python\perfomance_result.txt"
+#PATH_RESULTS = r"D:\VUM STUDY\2 year\1 semester\Software Metrics - Tools and Methodology\3. Assignment\Assignment_02\Assignment_02\Assignment_02_python\perfomance_result.txt"
+PATH_RESULTS = r"perfomance_result.txt"
 remove_open_files(PATH_RESULTS)
 
-PERF_PATH= r"D:\VUM STUDY\2 year\1 semester\Software Metrics - Tools and Methodology\3. Assignment\Assignment_02\Assignment_02\Assignment_02_python\perfomance.csv"
+
+#PERF_PATH= r"D:\VUM STUDY\2 year\1 semester\Software Metrics - Tools and Methodology\3. Assignment\Assignment_02\Assignment_02\Assignment_02_python\perfomance.csv"
+PERF_PATH= r"perfomance.csv"
 remove_open_files(PERF_PATH)
 
-PATH_DICTS= r"D:\VUM STUDY\2 year\1 semester\Software Metrics - Tools and Methodology\3. Assignment\Assignment_02\Assignment_02\Assignment_02_python\perfomance_dictionaries.csv"
+#PATH_DICTS= r"D:\VUM STUDY\2 year\1 semester\Software Metrics - Tools and Methodology\3. Assignment\Assignment_02\Assignment_02\Assignment_02_python\perfomance_dictionaries.csv"
+PATH_DICTS= r"perfomance_dictionaries.csv"
 remove_open_files(PATH_DICTS)
 
-PATH_AVERAGE= r"D:\VUM STUDY\2 year\1 semester\Software Metrics - Tools and Methodology\3. Assignment\Assignment_02\Assignment_02\Assignment_02_python\perfomance_average.csv"
+#PATH_AVERAGE= r"D:\VUM STUDY\2 year\1 semester\Software Metrics - Tools and Methodology\3. Assignment\Assignment_02\Assignment_02\Assignment_02_python\perfomance_average.csv"
+PATH_AVERAGE= r"perfomance_average.csv"
 remove_open_files(PATH_AVERAGE)
 
 
@@ -59,7 +66,6 @@ def names_durations_dicts(names_durations):
 def average_perfomance(names_durations):
     average_dict={}
     all_results_file_object.write("--------Average Perfomance-------\n")
-    print("--------Average Perfomance-------\n")
     for j in names_durations:
         if isinstance(names_durations[j], float)|isinstance(names_durations[j], int):
             average_dict[j]=names_durations[j]
@@ -71,15 +77,14 @@ def average_perfomance(names_durations):
             all_results_file_object.write(f"{j}:{average_dict[j]}\n")
             ave_file_object.write(f"{j},{average_dict[j]}\n")
             average=0
-        print(f"{j}:{average_dict[j]}\n")
 
-def my_func():
+def my_func(times):
     general_dict = {}
     names_durations={}
     average=0
     all_results_file_object.write("--------All Perfomances-------\n")
     i=0
-    while i<10: # run "time" times
+    while i<times: # run "time" times
         result = TestResults().test_on_web_page()
         print("-------------------------------------------")
         print(f"end session {i+1}")
@@ -115,13 +120,14 @@ def my_func():
         i+=1
     names_durations_dicts(names_durations)
     average_perfomance(names_durations)
-
     all_results_file_object.close()
     dicts_file_object.close()
     ave_file_object.close()
     perf_file_object.close()
-    print("End Programm")
+    with open(PATH_RESULTS, "r") as fh:
+        print(fh.read())
+    print("End Program")
 
 if __name__ == "__main__":
-    my_func()
+    my_func(TIMES)
  
