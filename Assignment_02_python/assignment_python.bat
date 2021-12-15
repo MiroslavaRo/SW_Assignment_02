@@ -1,0 +1,2 @@
+REM C:\Users\asus\TestEnv\Scripts\activate.bat
+C:\Users\asus\AppData\Local\Programs\Python\Python310\python.exe "D:\VUM STUDY\2 year\1 semester\Software Metrics - Tools and Methodology\3. Assignment\Assignment_02\Assignment_02\Assignment_02_python\assignment_02_python.py"
