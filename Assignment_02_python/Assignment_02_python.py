@@ -79,7 +79,7 @@ def my_func():
     average=0
     all_results_file_object.write("--------All Perfomances-------\n")
     i=0
-    while i<3: # run "time" times
+    while i<10: # run "time" times
         result = TestResults().test_on_web_page()
         print("-------------------------------------------")
         print(f"end session {i+1}")
